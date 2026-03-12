@@ -1,4 +1,4 @@
- Bakayoko-Mouhamed
+
 #%%
 import pandas as pd
 import numpy as np
@@ -7,9 +7,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 
-# 1. Récupération de la base de données
-chemin = r"C:\Cycle Ingénieur\1A\S6\GitHub\Pivot-Project_3-git\data\risk_factors_cervical_cancer.csv"
-df = pd.read_csv(chemin, na_values=["?"])
+# 1. Récupération de la base de données via l'URL
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00383/risk_factors_cervical_cancer.csv"
+df = pd.read_csv(url, na_values=["?"])
 
 # Définition de la cible
 X = df.drop('Biopsy', axis=1)
