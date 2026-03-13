@@ -7,9 +7,9 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 
-# 1. Récupération de la base de données
-chemin = "https://archive.ics.uci.edu/ml/machine-learning-databases/00383/risk_factors_cervical_cancer.csv"
-df = pd.read_csv(chemin, na_values=["?"])
+# 1. Récupération de la base de données via l'URL
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00383/risk_factors_cervical_cancer.csv"
+df = pd.read_csv(url, na_values=["?"])
 
 # Définition de la cible
 X = df.drop('Biopsy', axis=1)
@@ -73,4 +73,3 @@ scaler = StandardScaler()
 X_train_final = pd.DataFrame(scaler.fit_transform(X_train_balanced), columns=X_train_imputed.columns)
 X_test_final = pd.DataFrame(scaler.transform(X_test_imputed), columns=X_test_imputed.columns)
 # %%
-
