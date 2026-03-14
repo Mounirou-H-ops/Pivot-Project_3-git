@@ -134,11 +134,12 @@ class TestPretraitement:
             f"Certaines moyennes après normalisation sont éloignées de 0 :\n{moyennes[moyennes.abs() >= 0.5]}"
 
     def test_normalisation_ecart_type_proche_un(self):
-        """Après StandardScaler, l'écart-type des features doit être proche de 1."""
+        """Après StandardScaler, l'écart-type des features non constantes doit être proche de 1."""
         ecarts = X_train_final.std()
-        #assert (ecarts.between(0.5, 2.0)).all(), \
-        assert (ecarts.between(0.3, 3.0)).all(), \
-            f"Certains écarts-types sont anormaux :\n{ecarts[~ecarts.between(0.5, 2.0)]}"
+        # On exclut les colonnes constantes (std = 0) issues de features binaires rares
+        ecarts_non_constantes = ecarts[ecarts > 0]
+        assert (ecarts_non_constantes.between(0.3, 3.0)).all(), \
+            f"Certains écarts-types sont anormaux :\n{ecarts_non_constantes[~ecarts_non_constantes.between(0.3, 3.0)]}"
 
     def test_smote_equilibre_classes(self):
         """Après SMOTE, les classes doivent être équilibrées."""
