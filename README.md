@@ -3,9 +3,21 @@
 
 # 🩺 Application d'Aide à la Décision Médicale - Évaluation du Risque de Cancer du Col de l'Utérus
 
-Ce projet est réalisé dans le cadre de la Coding Week de l'École Centrale Casablanca. Il s'agit d'un outil d'aide à la décision clinique permettant d'évaluer le risque de cancer du col de l'utérus chez les patientes grâce à des modèles de Machine Learning (Random Forest, XGBoost, CatBoost), avec une explicabilité assurée par SHAP.
+Ce projet est réalisé dans le cadre de la Coding Week. Il s'agit d'un outil d'aide à la décision clinique permettant d'évaluer le risque de cancer du col de l'utérus chez les patientes en fonction de leurs antécédents médicaux et de leurs facteurs comportementaux. Notre outil se base des modèles de Machine Learning (Random Forest, XGBoost, CatBoost), avec une explicabilité assurée par SHAP.
 
-**Équipe :** Mouhamed, Bastien, Tawba, Abderrazak, Mohammed et Idriss.
+**Équipe :** Bakayoko Mouhamed Soualiou
+Diallo Ismaila
+Gbatta Jovite Jean-Paul
+Mounirou Kouadio Kobenan Habib
+Ouattara El Hadj Sinali
+
+**Objectifs du projet :**
+- Développez un modèle d'apprentissage automatique robuste et explicable.
+- Garantissez la transparence des prédictions du modèle grâce à l'explicabilité SHAP.
+- Créez une interface utilisateur intuitive (Streamlit ou Flask).
+- Suivez les bonnes pratiques de développement logiciel (GitHub, CI/CD automatisée).
+- Faites preuve de réactivité en documentant clairement les invites générées par l'IA utilisées dans votre flux de travail.
+
 
 ## ⚙️ Reproductibilité : Installation et Exécution
 
@@ -31,12 +43,20 @@ streamlit run app/app.py
 
 ```
 
-## 📊 Réponses aux Questions Critiques
+## 📊 Traitement des données
 
-### Le jeu de données était-il équilibré ? Si non, comment le déséquilibre a-t-il été géré et quel en a été l'impact ?
+### Gestion des valeurs manquantes
+Pour la gestion des valeurs manquantes, nous avons commencer par supprimer les caractéristiques (colonnes) avec une proportion de valeurs manquantes supérieur ou égale à 60%.
+Nous avons aussi remarqué que certaines des patientes ont très peu de données. Nous avons donc décidé de supprimer de la base de données les patients avec une proportion de valeurs manquantes supérieur ou égale à 60%.
+
+### Gestion des valeurs aberrantes
+Une valeur aberrante est une observation qui s'éloigne de façon anormale ou extrême des autres valeurs de ta base de données. Elle semble complètement "hors norme" par rapport au comportement général de tes échantillons.
+Pour la détection des valeurs aberrantes, on utilise 
+### Gestion du déséquilibre
 
 Le jeu de données initial présentait un déséquilibre majeur (~85% de cas "Sans risque" contre ~15% "À risque"). Nous avons appliqué la méthode **SMOTE (Synthetic Minority Over-sampling Technique)** uniquement sur les données d'entraînement.
 **Impact :** Cela a permis de générer des exemples synthétiques pour la classe minoritaire, évitant au modèle de toujours prédire la classe majoritaire et améliorant considérablement sa sensibilité pour la détection des cas à risque.
+
 
 ### Quel modèle de Machine Learning a obtenu les meilleures performances ?
 
@@ -70,8 +90,3 @@ Le prompt engineering itératif a permis de :
 * `images/` : Visualisations et graphiques SHAP sauvegardés automatiquement.
 * `.github/workflows/` : Pipeline CI/CD.
 
-```
-
-[https://docs.streamlit.io/library/get-started/main-concepts](https://docs.streamlit.io/library/get-started/main-concepts)
-
-```
