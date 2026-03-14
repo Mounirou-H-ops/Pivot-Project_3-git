@@ -9,7 +9,7 @@ Ce projet est réalisé dans le cadre de la Coding Week. Il s'agit d'un outil d'
 Diallo Ismaila
 Gbatta Jovite Jean-Paul
 Mounirou Kouadio Kobenan Habib
-Ouattara El Hadj Sinali
+Ouattara El Hadj Sinali Hassane
 
 **Objectifs du projet :**
 - Développez un modèle d'apprentissage automatique robuste et explicable.
