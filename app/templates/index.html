@@ -36,10 +36,10 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.2px;
-            color: #007bff;
+            color: #ff00d9;
             margin-bottom: 16px;
             padding-bottom: 6px;
-            border-bottom: 1.5px solid rgba(0,123,255,0.15);
+            border-bottom: 1.5px solid rgba(255, 0, 187, 0.15);
         }
 
         /* CONTENEUR ÉLARGI */
@@ -60,7 +60,7 @@
             align-items: center;
             justify-content: center;
             padding: 8px 6px;
-            border: 1.5px solid rgba(0,123,255,0.25);
+            border: 1.5px solid rgba(255, 0, 217, 0.25);
             border-radius: 10px;
             cursor: pointer;
             font-size: 0.82rem !important;
@@ -76,9 +76,9 @@
         }
 
         .binary-select input[type="radio"]:checked + label {
-            background: #007bff;
+            background: #ff008c;
             color: white !important;
-            border-color: #007bff;
+            border-color: #ff00a6;
         }
 
         /* RÉSULTAT */
@@ -108,8 +108,8 @@
 
 <div class="glass-container">
 
-    <header style="text-align: center; margin-bottom: 24px; border-bottom: 2px solid rgba(0,123,255,0.2); padding-bottom: 14px;">
-        <h1 style="color: #007bff; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
+    <header style="text-align: center; margin-bottom: 24px; border-bottom: 2px solid rgba(255, 0, 166, 0.2); padding-bottom: 14px;">
+        <h1 style="color: #ff008c; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">
             Application d'aide à la décision médicale
         </h1>
         <h2 style="color: #444; font-size: 1rem; font-weight: 500;">
@@ -124,11 +124,11 @@
 
     <!-- INDICATEUR D'ÉTAPES -->
     <div style="display:flex; justify-content:center; gap:10px; margin-bottom:22px;">
-        <div class="step-dot active" id="dot-1" style="width:32px;height:32px;border-radius:50%;background:#007bff;color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;transition:all 0.3s;">1</div>
-        <div style="flex:1;max-width:60px;height:2px;background:rgba(0,123,255,0.2);margin:auto;"></div>
-        <div class="step-dot" id="dot-2" style="width:32px;height:32px;border-radius:50%;background:rgba(0,123,255,0.15);color:#007bff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;transition:all 0.3s;">2</div>
-        <div style="flex:1;max-width:60px;height:2px;background:rgba(0,123,255,0.2);margin:auto;"></div>
-        <div class="step-dot" id="dot-3" style="width:32px;height:32px;border-radius:50%;background:rgba(0,123,255,0.15);color:#007bff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;transition:all 0.3s;">3</div>
+        <div class="step-dot active" id="dot-1" style="width:32px;height:32px;border-radius:50%;background:#ff009d;color:white;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;transition:all 0.3s;">1</div>
+        <div style="flex:1;max-width:60px;height:2px;background:rgba(255, 0, 170, 0.2);margin:auto;"></div>
+        <div class="step-dot" id="dot-2" style="width:32px;height:32px;border-radius:50%;background:rgba(255, 0, 187, 0.15);color:#ff0095;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;transition:all 0.3s;">2</div>
+        <div style="flex:1;max-width:60px;height:2px;background:rgba(255, 0, 208, 0.2);margin:auto;"></div>
+        <div class="step-dot" id="dot-3" style="width:32px;height:32px;border-radius:50%;background:rgba(255, 0, 174, 0.15);color:#ff009d;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;transition:all 0.3s;">3</div>
     </div>
 
     {% if prediction and request.method == 'POST' %}
@@ -165,8 +165,8 @@
             {% endif %}
 
             {% if shap_image %}
-                <div style="margin: 20px 0; border-top: 1px solid rgba(0,123,255,0.15); padding-top: 20px;">
-                    <h3 style="color:#007bff; font-size:0.95rem; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.8px;">
+                <div style="margin: 20px 0; border-top: 1px solid rgba(255, 0, 179, 0.15); padding-top: 20px;">
+                    <h3 style="color:#ff0099; font-size:0.95rem; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.8px;">
                         🔍 Explication du diagnostic (SHAP)
                     </h3>
                     <img src="{{ url_for('static', filename=shap_image) }}"
@@ -180,7 +180,7 @@
 
             <a href="/" class="btn-main"
                style="display:inline-block; margin-top:16px; text-decoration:none;
-                      padding:12px 28px; background:linear-gradient(135deg,#007bff,#0056d2);
+                      padding:12px 28px; background:linear-gradient(135deg,#ff00aa,#d20085);
                       color:white; border-radius:25px; font-weight:600;">
                 ↺ Refaire un test
             </a>
@@ -189,48 +189,67 @@
     {% else %}
     <form id="quiz-form" action="/" method="POST">
 
-        <!-- ══════════════ ÉTAPE 1 : Informations générales ══════════════ -->
+        <!-- ══════════════ ÉTAPE 1 : Examens cliniques & diagnostics ══════════════ -->
         <div class="step active" id="step-1">
-            <p class="step-title">📋 Étape 1 — Informations générales & tabac</p>
+            <p class="step-title">🏥 Étape 1 — Examens cliniques & diagnostics (les plus déterminants)</p>
             <div class="grid-3">
 
                 <!-- COLONNE 1 -->
                 <div class="form-group">
-                    <label>Âge</label>
-                    <input type="number" name="age" placeholder="ex: 30" min="12" max="120" required>
+                    <label>Schiller ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="schiller" id="sch_no" value="0" checked>
+                        <label for="sch_no">Non</label>
+                        <input type="radio" name="schiller" id="sch_yes" value="1">
+                        <label for="sch_yes">Oui</label>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <label>Nb. partenaires sexuels</label>
-                    <input type="number" name="partners" placeholder="ex: 2" min="0" required>
+                    <label>Hinselmann ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="hinselmann" id="hin_no" value="0" checked>
+                        <label for="hin_no">Non</label>
+                        <input type="radio" name="hinselmann" id="hin_yes" value="1">
+                        <label for="hin_yes">Oui</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Cytologie ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="citology" id="cit_no" value="0" checked>
+                        <label for="cit_no">Non</label>
+                        <input type="radio" name="citology" id="cit_yes" value="1">
+                        <label for="cit_yes">Oui</label>
+                    </div>
+                </div>
+
+                <!-- COLONNE 2 -->
+                <div class="form-group">
+                    <label>Dx (général) ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="dx" id="dx_no" value="0" checked>
+                        <label for="dx_no">Non</label>
+                        <input type="radio" name="dx" id="dx_yes" value="1">
+                        <label for="dx_yes">Oui</label>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label>Âge 1er rapport sexuel</label>
                     <input type="number" name="first_intercourse" placeholder="ex: 18" min="0" required>
                 </div>
-
-                <!-- COLONNE 2 -->
                 <div class="form-group">
-                    <label>Nb. de grossesses</label>
-                    <input type="number" name="pregnancies" placeholder="ex: 1" min="0" required>
-                </div>
-                <div class="form-group">
-                    <label>Fumeuse ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="smokes" id="smokes_no" value="0" checked>
-                        <label for="smokes_no">Non</label>
-                        <input type="radio" name="smokes" id="smokes_yes" value="1">
-                        <label for="smokes_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Tabac — années</label>
-                    <input type="number" name="smokes_years" placeholder="ex: 5" min="0" value="0">
+                    <label>Âge</label>
+                    <input type="number" name="age" placeholder="ex: 30" min="12" max="120" required>
                 </div>
 
                 <!-- COLONNE 3 -->
                 <div class="form-group">
-                    <label>Tabac — packs/an</label>
-                    <input type="number" name="smokes_packs" placeholder="ex: 1.5" min="0" step="0.1" value="0">
+                    <label>Nb. partenaires sexuels</label>
+                    <input type="number" name="partners" placeholder="ex: 2" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Nb. de grossesses</label>
+                    <input type="number" name="pregnancies" placeholder="ex: 1" min="0" required>
                 </div>
                 <div class="form-group">
                     <label>Contraceptifs hormonaux ?</label>
@@ -241,10 +260,6 @@
                         <label for="horm_yes">Oui</label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label>Contraceptifs — années</label>
-                    <input type="number" name="hormonal_years" placeholder="ex: 3" min="0" value="0">
-                </div>
 
             </div>
             <div class="btn-group" style="margin-top:24px;">
@@ -252,12 +267,64 @@
             </div>
         </div>
 
-        <!-- ══════════════ ÉTAPE 2 : DIU & MST ══════════════ -->
+        <!-- ══════════════ ÉTAPE 2 : Facteurs comportementaux ══════════════ -->
         <div class="step" id="step-2">
-            <p class="step-title">🔬 Étape 2 — DIU & Maladies sexuellement transmissibles</p>
+            <p class="step-title">🔬 Étape 2 — Facteurs comportementaux & antécédents</p>
             <div class="grid-3">
 
                 <!-- COLONNE 1 -->
+                <div class="form-group">
+                    <label>Contraceptifs — années</label>
+                    <input type="number" name="hormonal_years" placeholder="ex: 3" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Tabac — années</label>
+                    <input type="number" name="smokes_years" placeholder="ex: 5" min="0" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Fumeuse ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="smokes" id="smokes_no" value="0" checked>
+                        <label for="smokes_no">Non</label>
+                        <input type="radio" name="smokes" id="smokes_yes" value="1">
+                        <label for="smokes_yes">Oui</label>
+                    </div>
+                </div>
+
+                <!-- COLONNE 2 -->
+                <div class="form-group">
+                    <label>Dx: CIN ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="dx_cin" id="dcin_no" value="0" checked>
+                        <label for="dcin_no">Non</label>
+                        <input type="radio" name="dx_cin" id="dcin_yes" value="1">
+                        <label for="dcin_yes">Oui</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Dx: Cancer ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="dx_cancer" id="dxc_no" value="0" checked>
+                        <label for="dxc_no">Non</label>
+                        <input type="radio" name="dx_cancer" id="dxc_yes" value="1">
+                        <label for="dxc_yes">Oui</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>MST (diagnostic) ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="stds" id="stds_no" value="0" checked>
+                        <label for="stds_no">Non</label>
+                        <input type="radio" name="stds" id="stds_yes" value="1">
+                        <label for="stds_yes">Oui</label>
+                    </div>
+                </div>
+
+                <!-- COLONNE 3 -->
+                <div class="form-group">
+                    <label>Tabac — packs/an</label>
+                    <input type="number" name="smokes_packs" placeholder="ex: 1.5" min="0" step="0.1" value="0">
+                </div>
                 <div class="form-group">
                     <label>DIU (stérilet) ?</label>
                     <div class="binary-select">
@@ -271,53 +338,56 @@
                     <label>DIU — années</label>
                     <input type="number" name="iud_years" placeholder="ex: 2" min="0" value="0">
                 </div>
+
+            </div>
+            <div class="btn-group" style="margin-top:24px;">
+                <button type="button" class="btn-secondary" onclick="goToStep(1)">← Retour</button>
+                <button type="button" class="btn-main" onclick="goToStep(3)">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- ══════════════ ÉTAPE 3 : MST détaillées ══════════════ -->
+        <div class="step" id="step-3">
+            <p class="step-title">🧬 Étape 3 — MST détaillées</p>
+            <div class="grid-3">
+
+                <!-- COLONNE 1 -->
                 <div class="form-group">
-                    <label>MST (diagnostic) ?</label>
+                    <label>VIH ?</label>
                     <div class="binary-select">
-                        <input type="radio" name="stds" id="stds_no" value="0" checked>
-                        <label for="stds_no">Non</label>
-                        <input type="radio" name="stds" id="stds_yes" value="1">
-                        <label for="stds_yes">Oui</label>
+                        <input type="radio" name="stds_hiv" id="hiv_no" value="0" checked>
+                        <label for="hiv_no">Non</label>
+                        <input type="radio" name="stds_hiv" id="hiv_yes" value="1">
+                        <label for="hiv_yes">Oui</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>HPV ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="stds_hpv" id="hpv_no" value="0" checked>
+                        <label for="hpv_no">Non</label>
+                        <input type="radio" name="stds_hpv" id="hpv_yes" value="1">
+                        <label for="hpv_yes">Oui</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Hépatite B ?</label>
+                    <div class="binary-select">
+                        <input type="radio" name="stds_hepb" id="hepb_no" value="0" checked>
+                        <label for="hepb_no">Non</label>
+                        <input type="radio" name="stds_hepb" id="hepb_yes" value="1">
+                        <label for="hepb_yes">Oui</label>
                     </div>
                 </div>
 
                 <!-- COLONNE 2 -->
                 <div class="form-group">
-                    <label>Condylomatose cervicale ?</label>
+                    <label>SIDA ?</label>
                     <div class="binary-select">
-                        <input type="radio" name="stds_cervical" id="stds_c_no" value="0" checked>
-                        <label for="stds_c_no">Non</label>
-                        <input type="radio" name="stds_cervical" id="stds_c_yes" value="1">
-                        <label for="stds_c_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Condylomatose vaginale ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_vaginal" id="stds_v_no" value="0" checked>
-                        <label for="stds_v_no">Non</label>
-                        <input type="radio" name="stds_vaginal" id="stds_v_yes" value="1">
-                        <label for="stds_v_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Syphilis ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_syphilis" id="stds_s_no" value="0" checked>
-                        <label for="stds_s_no">Non</label>
-                        <input type="radio" name="stds_syphilis" id="stds_s_yes" value="1">
-                        <label for="stds_s_yes">Oui</label>
-                    </div>
-                </div>
-
-                <!-- COLONNE 3 -->
-                <div class="form-group">
-                    <label>Maladie inflammatoire pelvienne ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_pid" id="stds_p_no" value="0" checked>
-                        <label for="stds_p_no">Non</label>
-                        <input type="radio" name="stds_pid" id="stds_p_yes" value="1">
-                        <label for="stds_p_yes">Oui</label>
+                        <input type="radio" name="stds_aids" id="aids_no" value="0" checked>
+                        <label for="aids_no">Non</label>
+                        <input type="radio" name="stds_aids" id="aids_yes" value="1">
+                        <label for="aids_yes">Oui</label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -339,123 +409,53 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="btn-group" style="margin-top:24px;">
-                <button type="button" class="btn-secondary" onclick="goToStep(1)">← Retour</button>
-                <button type="button" class="btn-main" onclick="goToStep(3)">Suivant →</button>
-            </div>
-        </div>
-
-        <!-- ══════════════ ÉTAPE 3 : VIH, Diagnostics & Examens ══════════════ -->
-        <div class="step" id="step-3">
-            <p class="step-title">🧬 Étape 3 — VIH, Diagnostics & Examens cliniques</p>
-            <div class="grid-3">
-
-                <!-- COLONNE 1 -->
-                <div class="form-group">
-                    <label>SIDA ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_aids" id="aids_no" value="0" checked>
-                        <label for="aids_no">Non</label>
-                        <input type="radio" name="stds_aids" id="aids_yes" value="1">
-                        <label for="aids_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>VIH ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_hiv" id="hiv_no" value="0" checked>
-                        <label for="hiv_no">Non</label>
-                        <input type="radio" name="stds_hiv" id="hiv_yes" value="1">
-                        <label for="hiv_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Hépatite B ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_hepb" id="hepb_no" value="0" checked>
-                        <label for="hepb_no">Non</label>
-                        <input type="radio" name="stds_hepb" id="hepb_yes" value="1">
-                        <label for="hepb_yes">Oui</label>
-                    </div>
-                </div>
-
-                <!-- COLONNE 2 -->
-                <div class="form-group">
-                    <label>HPV ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="stds_hpv" id="hpv_no" value="0" checked>
-                        <label for="hpv_no">Non</label>
-                        <input type="radio" name="stds_hpv" id="hpv_yes" value="1">
-                        <label for="hpv_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Dx: Cancer ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="dx_cancer" id="dxc_no" value="0" checked>
-                        <label for="dxc_no">Non</label>
-                        <input type="radio" name="dx_cancer" id="dxc_yes" value="1">
-                        <label for="dxc_yes">Oui</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Dx: CIN ?</label>
-                    <div class="binary-select">
-                        <input type="radio" name="dx_cin" id="dcin_no" value="0" checked>
-                        <label for="dcin_no">Non</label>
-                        <input type="radio" name="dx_cin" id="dcin_yes" value="1">
-                        <label for="dcin_yes">Oui</label>
-                    </div>
-                </div>
-
                 <!-- COLONNE 3 -->
                 <div class="form-group">
-                    <label>Dx (général) ?</label>
+                    <label>Maladie inflammatoire pelvienne ?</label>
                     <div class="binary-select">
-                        <input type="radio" name="dx" id="dx_no" value="0" checked>
-                        <label for="dx_no">Non</label>
-                        <input type="radio" name="dx" id="dx_yes" value="1">
-                        <label for="dx_yes">Oui</label>
+                        <input type="radio" name="stds_pid" id="stds_p_no" value="0" checked>
+                        <label for="stds_p_no">Non</label>
+                        <input type="radio" name="stds_pid" id="stds_p_yes" value="1">
+                        <label for="stds_p_yes">Oui</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Hinselmann ?</label>
+                    <label>Syphilis ?</label>
                     <div class="binary-select">
-                        <input type="radio" name="hinselmann" id="hin_no" value="0" checked>
-                        <label for="hin_no">Non</label>
-                        <input type="radio" name="hinselmann" id="hin_yes" value="1">
-                        <label for="hin_yes">Oui</label>
+                        <input type="radio" name="stds_syphilis" id="stds_s_no" value="0" checked>
+                        <label for="stds_s_no">Non</label>
+                        <input type="radio" name="stds_syphilis" id="stds_s_yes" value="1">
+                        <label for="stds_s_yes">Oui</label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Schiller ?</label>
+                    <label>Condylomatose vaginale ?</label>
                     <div class="binary-select">
-                        <input type="radio" name="schiller" id="sch_no" value="0" checked>
-                        <label for="sch_no">Non</label>
-                        <input type="radio" name="schiller" id="sch_yes" value="1">
-                        <label for="sch_yes">Oui</label>
+                        <input type="radio" name="stds_vaginal" id="stds_v_no" value="0" checked>
+                        <label for="stds_v_no">Non</label>
+                        <input type="radio" name="stds_vaginal" id="stds_v_yes" value="1">
+                        <label for="stds_v_yes">Oui</label>
                     </div>
                 </div>
 
             </div>
 
-            <!-- Citologie séparée (28e feature) -->
+            <!-- Condylomatose cervicale (28e feature) -->
             <div style="margin-top:16px; max-width:280px;">
                 <div class="form-group">
-                    <label style="font-size:0.78rem; font-weight:700; color:#555;">Cytologie ?</label>
+                    <label style="font-size:0.78rem; font-weight:700; color:#555;">Condylomatose cervicale ?</label>
                     <div class="binary-select">
-                        <input type="radio" name="citology" id="cit_no" value="0" checked>
-                        <label for="cit_no">Non</label>
-                        <input type="radio" name="citology" id="cit_yes" value="1">
-                        <label for="cit_yes">Oui</label>
+                        <input type="radio" name="stds_cervical" id="stds_c_no" value="0" checked>
+                        <label for="stds_c_no">Non</label>
+                        <input type="radio" name="stds_cervical" id="stds_c_yes" value="1">
+                        <label for="stds_c_yes">Oui</label>
                     </div>
                 </div>
             </div>
 
             <div class="btn-group" style="margin-top:24px;">
                 <button type="button" class="btn-secondary" onclick="goToStep(2)">← Retour</button>
-                <button type="submit" class="btn-main" style="background: linear-gradient(135deg, #e91e8c, #007bff); letter-spacing:0.5px;">
+                <button type="submit" class="btn-main" style="background: linear-gradient(135deg, #e91e8c, #ff0090); letter-spacing:0.5px;">
                     🔍 LANCER LE DIAGNOSTIC
                 </button>
             </div>
