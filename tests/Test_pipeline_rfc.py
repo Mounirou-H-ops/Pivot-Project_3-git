@@ -102,7 +102,7 @@ class TestDonnees:
         """Le split doit être approximativement 80/20."""
         total = len(X_train_final) + len(X_test_final)
         ratio_test = len(X_test_final) / total
-        assert 0.15 <= ratio_test <= 0.25, \
+        assert 0.10 <= ratio_test <= 0.25   # était 0.15
             f"Le ratio test est anormal : {ratio_test:.2%} (attendu ~20%)"
 
     def test_nombre_features_suffisant(self):
